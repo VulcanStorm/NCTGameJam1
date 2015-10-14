@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 81bd8ee1ec5e4a24f96c83044be866e2
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - floorMeshFilter: {instanceID: 0}
+  - wallMeshFilter: {instanceID: 0}
+  - chunkPrefab: {fileID: 173854, guid: 10f644dc5f46e5e459395c179b42d81f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
