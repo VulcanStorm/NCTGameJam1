@@ -8,7 +8,8 @@ public class GameWorldManager : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		WorldController.singleton.CreateWorld(new Vector2(worldSizeX, worldSizeY));
+		WorldController.singleton.CreateTestWorld(new Vector2(worldSizeX,worldSizeY));
+		//WorldController.singleton.CreateNewWorld(new Vector2(worldSizeX, worldSizeY));
 		FogTextureGen.singleton.CreateNewFogTexture();
 	}
 	
