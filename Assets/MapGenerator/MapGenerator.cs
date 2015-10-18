@@ -24,6 +24,9 @@ public class MapGenerator : MonoBehaviour {
 		singleton = this;
 	}
 	
+	void OnDestroy(){
+		singleton = null;
+	}
 	
 	// Use this for initialization
 	void Start () {		
@@ -147,18 +150,22 @@ public class MapGenerator : MonoBehaviour {
 	
 	// TO BE USED IN GAME
 	// also used to load a new level
-	public void CreateLoadedWorldMesh (Vector2 size) {
-		
+	//public void CreateLoadedWorldMesh (Vector2 size) {
+	public void CreateLoadedWorldMesh (bool createColliders) {
 		
 		// create a new array
 		world = WorldController.singleton.world;
-		worldSize = size;
+		// worldSize = size;
+		worldSize.x = world.GetLength(0);
+		worldSize.y = world.GetLength(1);
 		WorldController.singleton.chunkSize = chunkSize;
 		
 		// create the world chunk array
 		// get the sizes for the array
-		int chunkXSize = Mathf.CeilToInt(size.x/chunkSize);
-		int chunkYSize = Mathf.CeilToInt(size.y/chunkSize);
+		//int chunkXSize = Mathf.CeilToInt(size.x/chunkSize);
+		//int chunkYSize = Mathf.CeilToInt(size.y/chunkSize);
+		int chunkXSize = Mathf.CeilToInt(worldSize.x/chunkSize);
+		int chunkYSize = Mathf.CeilToInt(worldSize.y/chunkSize);
 		// create a new array
 		worldChunks = new WorldChunk[chunkXSize,chunkYSize];
 		// determine the offset required so that the world starts at 0,0
@@ -179,6 +186,11 @@ public class MapGenerator : MonoBehaviour {
 		}
 		
 		CreateNewWorldMesh();
+		
+		if(createColliders == true){
+			AddCollidersToChunks();
+		}
+		
 	}
 				
 	void CreateNewWorldMesh () {

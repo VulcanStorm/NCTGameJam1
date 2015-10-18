@@ -67,7 +67,7 @@ public class MapEditor : MonoBehaviour {
 		SetupMesh();
 		SetupGUIRects();
 		SetupFilePaths();
-		WorldController.singleton.CreateWorld(new Vector2(64,64));
+		WorldController.singleton.CreateNewWorld(new Vector2(64,64));
 		world = WorldController.singleton.world;
 	}
 	
