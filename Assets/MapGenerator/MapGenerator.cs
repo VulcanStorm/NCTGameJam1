@@ -24,6 +24,9 @@ public class MapGenerator : MonoBehaviour {
 		singleton = this;
 	}
 	
+	void OnDestroy(){
+		singleton = null;
+	}
 	
 	// Use this for initialization
 	void Start () {		

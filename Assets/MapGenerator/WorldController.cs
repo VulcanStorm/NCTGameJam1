@@ -7,9 +7,15 @@ public class WorldController : MonoBehaviour {
 	public MapTile[,] world;
 	public MapData mapData;
 	public int chunkSize;
+	public int worldSizeX;
+	public int worldSizeY;
 	
 	void Awake () {
 		singleton = this;
+	}
+	
+	void OnDestroy(){
+		singleton = null;
 	}
 	
 	// Use this for initialization
@@ -17,6 +23,8 @@ public class WorldController : MonoBehaviour {
 	}
 	
 	public void CreateWorld(Vector2 size){
+		worldSizeX = (int)size.x;
+		worldSizeY = (int)size.y;
 		world = new MapTile[(int)size.x,(int)size.y];
 		MapGenerator.singleton.CreateEmptyWorld(size);
 	}
