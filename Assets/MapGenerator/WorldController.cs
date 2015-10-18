@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WorldController : MonoBehaviour {
 	
@@ -9,6 +10,10 @@ public class WorldController : MonoBehaviour {
 	public int chunkSize;
 	public int worldSizeX;
 	public int worldSizeY;
+	
+	// fog management variables
+	public List<FogZone> fogZones;
+	
 	
 	void Awake () {
 		singleton = this;
@@ -48,19 +53,95 @@ public class WorldController : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		// TODO, remove this
+	public static void RegisterFogZone (FogZone fz) {
+		singleton.fogZones.Add (fz);
+	}
+	
+	public static void RemoveFogZone (FogZone fz){
+		singleton.fogZones.Remove(fz);
 	}
 	
 	public void UpdateFog () {
-	/*	for(int i=0;i<worldSizeX;i++){
-			world[i,0].fog = (byte)(255 * Mathf.Abs(Mathf.Sin (i*Mathf.Deg2Rad + Time.time)));
-			for(int n=1;n<worldSizeY;n++){
-				world[i,n].fog = world[i,0].fog;
+		// simple fog removal
+		
+		// refresh the fog map
+		for(int i=0;i<worldSizeX;i++){
+			for(int j=0;j<worldSizeY;j++){
+				world[i,j].fog = world[i,j].baseFog;
 			}
 		}
-	*/	
+		
+		// iterate over the list of fog zones
+		
+		// add all the fog generated first
+		
+		// now remove any fog that needs clearing
+		for(int i=0;i<fogZones.Count;i++){
+			// iterate over the fog zone array
+			ProcessFogZone(fogZones[i]);
+		}
+		
+	}
+	
+	void ProcessFogZone (FogZone zone) {
+		// get the tile position of the object
+		int baseXPos = CheckBoundsX(zone.thisTransform.position.x-0.5f);
+		int baseYPos = CheckBoundsY(zone.thisTransform.position.z-0.5f);
+		
+		int xPos;
+		int yPos;
+		
+		// iterate over all the tiles
+		for(int i=0;i<zone.fogTileZone.Length;i++){
+			xPos = CheckBoundsX(zone.fogTileZone[i].x + baseXPos);
+			yPos = CheckBoundsY(zone.fogTileZone[i].y + baseYPos);
+			world[xPos,yPos].fog = BoundFog(world[xPos,yPos].fog - zone.fogTileZone[i].fogLevel);
+		}
+	}
+	
+	static byte b;
+	
+	byte BoundFog (int num){
+		if(num < 0){
+			b=0;
+		}
+		else if(num > 255){
+			b=255;
+		}
+		else{
+			b=(byte)num;
+		}
+		return b;
+	}
+	
+	static int p;
+	
+	
+	
+	int CheckBoundsX (float pos) {
+		if(pos < 0){
+			p = 0;
+		}
+		else if(pos > worldSizeX-1){
+			p = worldSizeX-1;
+		}
+		else{
+			p = Mathf.RoundToInt(pos);
+		}
+		return p;
+	}
+	
+	int CheckBoundsY (float pos) {
+		if(pos < 0){
+			p = 0;
+		}
+		else if(pos > worldSizeY-1){
+			p = worldSizeY-1;
+		}
+		else{
+			p = Mathf.RoundToInt(pos);
+		}
+		return p;
 	}
 	
 	public void CreateTestWorld (Vector2 size) {
@@ -70,6 +151,7 @@ public class WorldController : MonoBehaviour {
 		
 		for(int i=0;i<worldSizeX;i++){
 			world[i,0].fog = 255;
+			world[i,0].baseFog = 255;
 			world[i,0].height = 1;
 			for(int n=1;n<worldSizeY;n++){
 				world[i,n] = world[i,0];
