@@ -237,6 +237,10 @@ Prefab:
       propertyPath: pixelToWorldRatio
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11411150, guid: ec5233beb6cdf0f49a5180c492c68869, type: 2}
+      propertyPath: fogHeight
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec5233beb6cdf0f49a5180c492c68869, type: 2}
   m_IsPrefabParent: 0
@@ -425,7 +429,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &1227419958 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: d07d0497c25e1ce46881a4fb3e6c858c, type: 2}

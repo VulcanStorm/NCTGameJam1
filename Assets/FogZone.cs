@@ -57,7 +57,32 @@ public class FogZone : MonoBehaviour {
 			smallFogClear[20] = new FogMapCoord(2,1,8, true);
 			
 			// MEDIUM FOG CLEARING RING
+			byte[,] medFogArea = new byte[9,9];
+			mediumFogClear = new FogMapCoord[81];
+			// create the ring
+			for(int i=0;i<9;i++){
+				for(int j=0;j<9;j++){
+					
+					int xPos = i-4;
+					int yPos = j-4;
+					float mag = 5-(Mathf.Sqrt((xPos*xPos)+(yPos*yPos)));
+					if(mag < 0){
+						mag = 0;
+					}
+					mag = (mag/5);
+					byte fogDensity = (byte)(mag*255);
+					medFogArea[i,j] = fogDensity;
+					
+				}
+			}
 			
+			for(int i=0;i<81;i++){
+				int xCoord = (int)(i%9);
+				int yCoord = (int)(i/9);
+				
+				mediumFogClear[i] = new FogMapCoord((sbyte)(xCoord-4),(sbyte)(yCoord-4),medFogArea[xCoord,yCoord],true);
+				
+			}
 		}
 	}
 	
@@ -65,13 +90,13 @@ public class FogZone : MonoBehaviour {
 	void Start () {
 		CreatePresetFogZones();
 		// by default, all fog zones are small clearing ones
-		fogTileZone = smallFogClear;
+		fogTileZone = mediumFogClear;
 		thisTransform = this.transform;
 		WorldController.RegisterFogZone(this);
 	}
 	
 	void OnDestroy () {
-		WorldController.RemoveFogZone(this);
+		//WorldController.RemoveFogZone(this);
 	}
 	
 	// Update is called once per frame
