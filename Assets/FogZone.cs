@@ -15,13 +15,23 @@ public struct FogMapCoord {
 	}
 }
 
+public enum FogType {
+	SmallClear,
+	MediumClear,
+	LargeClear,
+	Custom
+}
+
 public class FogZone : MonoBehaviour {
 	
 	static bool hasDonePresetFogSetup = false;
 	static FogMapCoord[] smallFogClear;
 	static FogMapCoord[] mediumFogClear;
+	static FogMapCoord[] largeFogClear;
+	public FogType fogZoneType = FogType.SmallClear;
 	
 	public FogMapCoord[] fogTileZone;
+	[HideInInspector]
 	public Transform thisTransform;
 	
 	// all hard coded, for some pre-set fog clear zones
@@ -83,14 +93,71 @@ public class FogZone : MonoBehaviour {
 				mediumFogClear[i] = new FogMapCoord((sbyte)(xCoord-4),(sbyte)(yCoord-4),medFogArea[xCoord,yCoord],true);
 				
 			}
+			
+			// LARGE FOG CLEARING RING
+			byte[,] lrgFogArea = new byte[15,15];
+			largeFogClear = new FogMapCoord[225];
+			// create the ring
+			for(int i=0;i<15;i++){
+				for(int j=0;j<15;j++){
+					
+					int xPos = i-7;
+					int yPos = j-7;
+					float mag = 8-(Mathf.Sqrt((xPos*xPos)+(yPos*yPos)));
+					if(mag < 0){
+						mag = 0;
+					}
+					mag = (mag/8);
+					byte fogDensity = (byte)(mag*255);
+					lrgFogArea[i,j] = fogDensity;
+					
+				}
+			}
+			
+			for(int i=0;i<225;i++){
+				int xCoord = (int)(i%15);
+				int yCoord = (int)(i/15);
+				
+				largeFogClear[i] = new FogMapCoord((sbyte)(xCoord-7),(sbyte)(yCoord-7),lrgFogArea[xCoord,yCoord],true);
+				
+			}
+		}
+	}
+	
+	void SetFogZone () {
+		switch(fogZoneType){
+			
+			case FogType.LargeClear:
+			fogTileZone = largeFogClear;
+			break;
+			
+			case FogType.MediumClear:
+				fogTileZone = mediumFogClear;
+			break;
+			
+			case FogType.SmallClear:
+				fogTileZone = smallFogClear;
+			break;
+			
+			case FogType.Custom:
+				// change this
+				fogTileZone = mediumFogClear;
+			break;
+			
+			// by default, all fog zones are small clearing ones
+			default:
+				fogTileZone = smallFogClear;
+			break;
+			
 		}
 	}
 	
 	// Use this for initialization
 	void Start () {
 		CreatePresetFogZones();
-		// by default, all fog zones are small clearing ones
-		fogTileZone = mediumFogClear;
+		SetFogZone ();
+		
+	
 		thisTransform = this.transform;
 		WorldController.RegisterFogZone(this);
 	}
