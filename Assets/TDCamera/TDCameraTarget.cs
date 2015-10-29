@@ -74,8 +74,8 @@ public class TDCameraTarget : MonoBehaviour {
 			thisTransform.Rotate(Vector3.up * rotInput * rotSpeed * Time.deltaTime, Space.Self);
 		}
 		else{
-			movePos.x  = Input.GetAxis("Horizontal");
-			movePos.z  = Input.GetAxis("Vertical");
+			//movePos.x  = Input.GetAxis("Horizontal");
+			//movePos.z  = Input.GetAxis("Vertical");
 			
 			
 			Vector2 mousePos = Input.mousePosition;
