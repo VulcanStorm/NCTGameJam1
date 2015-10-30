@@ -2,7 +2,7 @@
 /*
  * 
  * FOR AARON TO USE
- *
+ * WILL NEED TO BE REWRITTEN IN C#
  */
 
 // reference to rigidbody component

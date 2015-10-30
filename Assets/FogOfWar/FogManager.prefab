@@ -348,7 +348,7 @@ MonoBehaviour:
   fogTex: {fileID: 0}
   fogPlane: {fileID: 409058}
   pixelToWorldRatio: 1
-  fogHeight: 5
+  fogHeight: 2
   fogUpdateTime: .100000001
 --- !u!1001 &100100000
 Prefab:
