@@ -126,14 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoSetup: 0
-  playerCamera: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerCamera: {fileID: 183612, guid: 828bf166c4eb6cf41bc640254588bcd1, type: 2}
+  playerPrefab: {fileID: 109084, guid: eadad79fb7db97846ba8604f2655c449, type: 2}
   initialCameraSpawn: {fileID: 0}
-  playerSpawns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  playerSpawn: {fileID: 0}
 --- !u!114 &11415974
 MonoBehaviour:
   m_ObjectHideFlags: 1

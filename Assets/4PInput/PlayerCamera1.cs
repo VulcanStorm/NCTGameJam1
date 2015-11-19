@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerCamera : MonoBehaviour {
+public class PlayerCamera1 : MonoBehaviour {
 
 	int playerNumber = 0;
 	Camera_Follow camScript = null;
