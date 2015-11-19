@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject playerCamera = null;
 	public GameObject playerPrefab = null;
 	public Transform initialCameraSpawn = null;
-	public Transform[] playerSpawns = new Transform[4];
+	public Transform playerSpawn = null;
 	
 	void Awake () {
 		singleton = this;
@@ -21,18 +21,18 @@ public class Spawner : MonoBehaviour {
 	}
 	
 	
-	public void SpawnCameras(int playerCount){
-		for(int i=0;i<playerCount;i++){
+	public void SpawnCameras(int noOfPlayers){
+		for(int i=0;i<noOfPlayers;i++){
 			GameObject newCam = Instantiate(playerCamera,initialCameraSpawn.position,initialCameraSpawn.rotation) as GameObject;
 			Camera camComponent = newCam.GetComponent<Camera>();
 			// only spawn 1 camera
-			if(playerCount ==1){
+			if(noOfPlayers ==1){
 				camComponent.rect = new Rect(0,0,1,1);
 				camComponent.depth = 0;
 				
 			}
 			// spawn 2 cameras
-			else if(playerCount ==2){
+			else if(noOfPlayers ==2){
 				if(i==0){
 					// cam 1 = bottom screen
 					camComponent.rect = new Rect(0,0.5f,1,0.5f);
@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour {
 				}
 			}
 			// spawn more than 2 cameras
-			else if(playerCount >2){
+			else if(noOfPlayers >2){
 				if(i == 0){
 					// cam 1 = top left
 					camComponent.rect = new Rect(0,0.5f,0.5f,0.5f);
@@ -69,11 +69,27 @@ public class Spawner : MonoBehaviour {
 			}
 			PlayerCtrlSetup.singleton.AddPlayerCamera(i, newCam);
 		}
+		GameManager.singleton.GotPlayerCameras();
 	}
 	
 	// TODO remove this
-	/*public void SpawnPlayers(int playerCount){
-		int plNr = 0;
+	public void SpawnPlayers(int noOfPlayers){
+		
+		for(uint i=0;i<noOfPlayers;i++){
+			
+			GameObject newPlayer = Instantiate(playerPrefab,playerSpawn.position,playerSpawn.rotation) as GameObject;
+			// get the player script
+			PlayerController playerScript = newPlayer.GetComponent<PlayerController>();
+			// set the controller number to use
+			playerScript.controllerNo = i;
+			// send the right input
+			playerScript.SetInputAxes(PlayerCtrlSetup.singleton.playerInputAxes[i]);
+			// get the camera for the player
+			playerScript.GetCamera();
+			
+			
+		}
+		/*int plNr = 0;
 		for(int i=0;i<playerCount;i++){
 			GameObject newPlayer = Instantiate(playerPrefab,playerSpawns[i].position,playerSpawns[i].rotation) as GameObject;
 			// send the Axis names to the player
@@ -88,8 +104,8 @@ public class Spawner : MonoBehaviour {
 				}
 			}
 			GameManager.singleton.AddPlayer(i,newPlayer);
-		}
-	}*/
+		}*/
+	}
 	
 	
 	public void RespawnPlayer (int plNr){

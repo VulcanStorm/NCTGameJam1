@@ -54,7 +54,7 @@ public class GameManager1 : MonoBehaviour {
 	
 	void SetupCameras () {
 	for(int i=0;i<playerCount;i++){
-	playerCameras[i].GetComponent<PlayerCamera>().SetTarget(players[i]);
+	playerCameras[i].GetComponent<PlayerCamera1>().SetTarget(players[i]);
 	//TODO CORRECT THIS
 	//players[i].GetComponent<Tank_Controller>().SetCamera(playerCameras[i]);
 	//players[i].GetComponent<Tank_Controller>().SetPlayerNumber(i);

@@ -90,7 +90,7 @@ public class FogTextureGen : MonoBehaviour {
 			yield return new WaitForSeconds(fogUpdateTime);
 			// TODO REMOVE THIS
 			WorldController.singleton.UpdateFog();
-			Debug.Log ("UpdatingFogTexture");
+			//Debug.Log ("UpdatingFogTexture");
 			UpdateFogTexture();
 			
 		}
