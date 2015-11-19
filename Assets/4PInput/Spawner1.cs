@@ -10,15 +10,15 @@ public class Spawner1 : MonoBehaviour {
 	public Transform[] playerSpawns = new Transform[4];
 		
 	GameManager1 gameManager = null;
-	Player_Ctrl_Setup playerCtrlSetup = null;
+	PlayerCtrlSetup playerCtrlSetup = null;
 	
 	
 	// Use this for initialization
 	void Start () {
-	if(autoSetup == true){
-	gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager1>();
-	playerCtrlSetup = GameObject.FindGameObjectWithTag("GameController").GetComponent<Player_Ctrl_Setup>();
-	}
+		if(autoSetup == true){
+			gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager1>();
+			playerCtrlSetup = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerCtrlSetup>();
+		}
 	}
 	
 	public void SpawnCameras(int playerCount){
