@@ -212,7 +212,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: ac0b91b833c1b934793cfb84e2b19163, type: 2}
+  - {fileID: 2100000, guid: 16351ce33042bda438438a0b872a0575, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f43285ce0e07944caf59b359b1d79ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogMat: {fileID: 2100000, guid: ac0b91b833c1b934793cfb84e2b19163, type: 2}
+  fogMat: {fileID: 2100000, guid: 16351ce33042bda438438a0b872a0575, type: 2}
   fogTex: {fileID: 0}
   fogPlane: {fileID: 409058}
   pixelToWorldRatio: 1
