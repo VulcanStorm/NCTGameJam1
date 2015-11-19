@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
 	public void GotPlayerCameras () {
 		print ("got player cameras");
 		// spawn players
-		
+		Spawner.singleton.SpawnPlayers(playerCount);
 		
 	}
 	
