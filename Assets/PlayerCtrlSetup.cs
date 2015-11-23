@@ -230,28 +230,33 @@ public class PlayerCtrlSetup : MonoBehaviour {
 		
 		// integer to hold which player we are currently processing
 		int plCtrlNum = 0;
-		
+
 		// check all the possible players, and set their controllerIDs
-		if(activePlayers[0] == true){
-			localPlayerCtrlData[plCtrlNum].controllerScreenID = 0;
-			localPlayerCtrlData[plCtrlNum].inputAxes = playerInputAxes[0];
-				plCtrlNum++;
-		}
-		if(activePlayers[1] == true){
-			localPlayerCtrlData[plCtrlNum].controllerScreenID = 1;
-			localPlayerCtrlData[plCtrlNum].inputAxes = playerInputAxes[1];
+
+		if (activePlayers [0] == true) {
+			localPlayerCtrlData [plCtrlNum].controllerScreenID = 0;
+			localPlayerCtrlData [plCtrlNum].inputAxes = playerInputAxes [0];
 			plCtrlNum++;
 		}
-		if(activePlayers[2] == true){
-			localPlayerCtrlData[plCtrlNum].controllerScreenID = 2;
-			localPlayerCtrlData[plCtrlNum].inputAxes = playerInputAxes[2];
+
+		if (activePlayers [1] == true) {
+			localPlayerCtrlData [plCtrlNum].controllerScreenID = 1;
+			localPlayerCtrlData [plCtrlNum].inputAxes = playerInputAxes [1];
 			plCtrlNum++;
 		}
-		if(activePlayers[3] == true){
-			localPlayerCtrlData[plCtrlNum].controllerScreenID = 3;
-			localPlayerCtrlData[plCtrlNum].inputAxes = playerInputAxes[3];
+
+		if (activePlayers [2] == true) {
+			localPlayerCtrlData [plCtrlNum].controllerScreenID = 2;
+			localPlayerCtrlData [plCtrlNum].inputAxes = playerInputAxes [2];
 			plCtrlNum++;
 		}
+
+		if (activePlayers [3] == true) {
+			localPlayerCtrlData [plCtrlNum].controllerScreenID = 3;
+			localPlayerCtrlData [plCtrlNum].inputAxes = playerInputAxes [3];
+			plCtrlNum++;
+		}
+
 		// finally notify the game manager that we have all the player controllers
 		GameManager.singleton.GotPlayerControllers();
 	}
