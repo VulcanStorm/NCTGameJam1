@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 50c750836ee3b16408c2fae7ef44e630
+timeCreated: 1448272618
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - invisibleRoofMat: {fileID: 2100000, guid: d1da53799a94a2b44aabc33ef392085b, type: 2}
+  - roofMat: {fileID: 2100000, guid: 5c92ef88f4f920340a3d68e7dda4a622, type: 2}
+  - vampRoofRenderer: {instanceID: 0}
+  - huntRoofRenderer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

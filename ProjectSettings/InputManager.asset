@@ -246,7 +246,7 @@ InputManager:
     axis: 8
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_X
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -257,12 +257,12 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 0
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_Y
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -276,9 +276,9 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_X2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -289,12 +289,12 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 3
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_Y2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -307,10 +307,10 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 4
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_Fire1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -320,13 +320,13 @@ InputManager:
     gravity: 0
     dead: .189999998
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 9
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy2_Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -336,13 +336,13 @@ InputManager:
     gravity: 0
     dead: .189999998
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 8
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_X
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -353,12 +353,12 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 0
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_Y
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -372,9 +372,9 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_X2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -385,12 +385,12 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 3
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_Y2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -403,10 +403,10 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 4
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_Fire1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -416,13 +416,13 @@ InputManager:
     gravity: 0
     dead: .189999998
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 9
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy3_Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -432,13 +432,13 @@ InputManager:
     gravity: 0
     dead: .189999998
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 8
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_X
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -449,12 +449,12 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 0
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_Y
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -468,9 +468,9 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_X2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -483,10 +483,10 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 3
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_Y2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -499,10 +499,10 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 4
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_Fire1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -515,10 +515,10 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 9
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: Joy1_Y
+    m_Name: Joy4_Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -528,8 +528,8 @@ InputManager:
     gravity: 0
     dead: .189999998
     sensitivity: 1
-    snap: 0
+    snap: 1
     invert: 1
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 8
+    joyNum: 4
