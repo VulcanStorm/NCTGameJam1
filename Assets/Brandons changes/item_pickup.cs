@@ -1,8 +1,9 @@
-﻿/*
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class item_pickup : MonoBehaviour {
+
+	public bool isHeld = false;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,25 @@ public class item_pickup : MonoBehaviour {
 
 	// Trigger for knight piece item pickup
 	void OnTriggerEnter (Collider other) {
-		if (other.GetComponent<Collider>().tag == "Player") {
+		if (other.tag == "Player" && isHeld == false) {  
 			print ("Item picked up");
-			//send the player a message saying they picked an item up
-			other.transform.SendMessage("item_pickup",this.gameObject);
-			// destroy item
-			Destroy (this.gameObject);
-
+			player_carry plScript = other.GetComponent<player_carry>();
+			if(plScript.is_carrying == false){
+				isHeld = true;
+				plScript.PickupItem(this);
+				this.transform.position = plScript.pieceHolder.position;
+				this.transform.parent = plScript.pieceHolder;
+			}
 		}
 	}
+
+	public void DropPiece(){
+		isHeld = false;
+		this.transform.parent = null;
+	}
+
+	public void CapturePiece () {
+		Destroy (this);
+	}
 }
-*/
+
