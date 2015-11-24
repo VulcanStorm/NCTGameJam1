@@ -34,7 +34,7 @@ public class player_carry : MonoBehaviour {
 		}
 	}
 
-	public void CaptureItem () {
+	public void ReturnItem () {
 		if (is_carrying == true) {
 			is_carrying = false;
 			heldItem.DropPiece ();
