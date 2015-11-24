@@ -26,24 +26,39 @@ public class HouseRoofControl : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 	
 		if(col.tag == "Player"){
+			// get player script
+			//print ("entered house");
+			PlayerController plScript = col.GetComponent<PlayerController>();
 			
-			print ("entered house");
+			if(plScript.playerTeam == Team.Vampires){
+				// check for vampire
+				VampireEntered();
+			}
+			else if(plScript.playerTeam == Team.Hunters){
+				// check for hunter
+				HunterEntered();
+			}
 			
-			// check for vampire
-			VampireEntered();
 			
-			// check for hunter
-			HunterEntered();
+			
 		}
 	}
 	
 	void OnTriggerExit (Collider col){
 		if(col.tag == "Player"){
-			// check for vampire
-			VampireLeft();
+		
+			// get player script
+			//print ("left house");
+			PlayerController plScript = col.GetComponent<PlayerController>();
 			
-			// check for hunter
-			HunterLeft();
+			if(plScript.playerTeam == Team.Vampires){
+				// check for vampire
+				VampireLeft();
+			}
+			else if(plScript.playerTeam == Team.Hunters){
+				// check for hunter
+				HunterLeft();
+			}
 		}
 	}
 	
@@ -81,7 +96,7 @@ public class HouseRoofControl : MonoBehaviour {
 	}
 	
 	void HunterLeft () {
-		numOfHunter ++;
+		numOfHunter --;
 		ToggleHunterRoof();
 	}
 }

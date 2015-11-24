@@ -22,6 +22,13 @@ public enum FogType {
 	Custom
 }
 
+// used to specify which team this fog zone works for
+public enum FogTeam {
+	All,
+	Vampires,
+	Hunters
+}
+
 public class FogZone : MonoBehaviour {
 	
 	static bool hasDonePresetFogSetup = false;
@@ -31,6 +38,7 @@ public class FogZone : MonoBehaviour {
 	public FogType fogZoneType = FogType.SmallClear;
 	
 	public FogMapCoord[] fogTileZone;
+	public FogTeam team = FogTeam.All;
 	[HideInInspector]
 	public Transform thisTransform;
 	
