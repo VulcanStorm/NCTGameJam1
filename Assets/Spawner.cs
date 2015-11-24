@@ -7,10 +7,14 @@ public class Spawner : MonoBehaviour {
 	
 	
 	public bool autoSetup = false;
+	
 	public GameObject playerCamera = null;
 	public GameObject playerPrefab = null;
 	public Transform initialCameraSpawn = null;
 	public Transform playerSpawn = null;
+	
+	public int spawnRadius = 5;
+	Vector3 spawnPos;
 	
 	void Awake () {
 		singleton = this;
@@ -24,49 +28,50 @@ public class Spawner : MonoBehaviour {
 	public void SpawnCameras(int noOfPlayers){
 		for(int i=0;i<noOfPlayers;i++){
 			GameObject newCam = Instantiate(playerCamera,initialCameraSpawn.position,initialCameraSpawn.rotation) as GameObject;
-			Camera camComponent = newCam.GetComponent<Camera>();
+			Rect camRect = new Rect();
 			// only spawn 1 camera
 			if(noOfPlayers ==1){
-				camComponent.rect = new Rect(0,0,1,1);
-				camComponent.depth = 0;
+				camRect = new Rect(0,0,1,1);
+				
 				
 			}
 			// spawn 2 cameras
 			else if(noOfPlayers ==2){
 				if(i==0){
 					// cam 1 = bottom screen
-					camComponent.rect = new Rect(0,0.5f,1,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0,0.5f,1,0.5f);
+					
 				}
 				else if(i==1){
 					// cam 2 = bottom screen
-					camComponent.rect = new Rect(0,0f,1,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0,0f,1,0.5f);
+					
 				}
 			}
 			// spawn more than 2 cameras
 			else if(noOfPlayers >2){
 				if(i == 0){
 					// cam 1 = top left
-					camComponent.rect = new Rect(0,0.5f,0.5f,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0,0.5f,0.5f,0.5f);
+					
 				}
 				else if(i==1){
 					// cam 2 = top right
-					camComponent.rect = new Rect(0.5f,0.5f,0.5f,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0.5f,0.5f,0.5f,0.5f);
+					
 				}
 				else if(i==2){
 					// cam 3 = bottom left
-					camComponent.rect = new Rect(0,0,0.5f,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0,0,0.5f,0.5f);
+					
 				}
 				else if(i==3){
 					// cam 4 = bottom right
-					camComponent.rect = new Rect(0.5f,0,1f,0.5f);
-					camComponent.depth = 0;
+					camRect = new Rect(0.5f,0,1f,0.5f);
+					
 				}	
 			}
+			newCam.GetComponent<CameraViewLayers>().SetViewRect(camRect,0,1);
 			PlayerCtrlSetup.singleton.AddPlayerCamera(i, newCam);
 		}
 		GameManager.singleton.GotPlayerCameras();
@@ -76,8 +81,10 @@ public class Spawner : MonoBehaviour {
 	public void SpawnPlayers(int noOfPlayers){
 		
 		for(uint i=0;i<noOfPlayers;i++){
-			
-			GameObject newPlayer = Instantiate(playerPrefab,playerSpawn.position,playerSpawn.rotation) as GameObject;
+			spawnPos = playerSpawn.position;
+			spawnPos.z += Random.Range(-spawnRadius,spawnRadius);
+			spawnPos.x += Random.Range(-spawnRadius,spawnRadius);
+			GameObject newPlayer = Instantiate(playerPrefab,spawnPos,playerSpawn.rotation) as GameObject;
 			// get the player script
 			PlayerController playerScript = newPlayer.GetComponent<PlayerController>();
 			// set the controller number to use
@@ -86,7 +93,8 @@ public class Spawner : MonoBehaviour {
 			playerScript.SetInputAxes(PlayerCtrlSetup.singleton.playerInputAxes[i]);
 			// get the camera for the player
 			playerScript.GetCamera();
-			
+			Team team = (Team)((i%2));
+			playerScript.SetTeam(team);
 			
 		}
 		/*int plNr = 0;

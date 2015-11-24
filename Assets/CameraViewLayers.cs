@@ -10,6 +10,9 @@ public class CameraViewLayers : MonoBehaviour {
 	public LayerMask vampireFogLayers;
 	public LayerMask hunterFogLayers;
 	
+	public Rect viewRect;
+	public int viewDepth;
+	public int fogDepth;
 	public Camera viewCam = null;
 	public Camera fogCam = null;
 	
@@ -26,5 +29,18 @@ public class CameraViewLayers : MonoBehaviour {
 			viewCam.cullingMask = hunterViewLayers;
 			fogCam.cullingMask = hunterFogLayers;
 		}
+	}
+	
+	public void SetViewRect(Rect vRect, int vDepth, int fDepth){
+		// store the values
+		viewRect = vRect;
+		viewDepth = vDepth;
+		fogDepth = fDepth;
+		
+		// set the values
+		viewCam.rect = viewRect;
+		fogCam.rect = viewRect;
+		viewCam.depth = vDepth;
+		fogCam.depth = fDepth;
 	}
 }

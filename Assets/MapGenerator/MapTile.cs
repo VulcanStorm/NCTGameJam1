@@ -12,8 +12,12 @@ public struct MapTile {
 	public byte fogHeight;
 	// base fog value, to return to
 	public byte baseFog;
+	public static byte baseVampireFogRedux = 14;
 	// how much fog is here
 	public byte fog;
+	
+	public byte vampireFog;
+	public byte hunterFog;
 	
 	public MapTile(byte h){
 		height = h;
@@ -21,6 +25,8 @@ public struct MapTile {
 		fog = 255;
 		fogHeight = 1;
 		baseFog = 255;
+		vampireFog = 0;
+		hunterFog = 0;
 		
 	}
 }

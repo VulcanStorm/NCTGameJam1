@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	
 	public uint controllerNo = 9;
+	public Team playerTeam = Team.Hunters;
 	public bool isPlaying  = false;
 	public PlayerInputNames inputAxes;
 	
@@ -49,6 +50,16 @@ public class PlayerController : MonoBehaviour {
 	public void SetInputAxes(PlayerInputNames newAxes){
 		inputAxes = newAxes;
 		isPlaying = true;
+	}
+	
+	public void SetTeam(Team t){
+		playerTeam = t;
+		if(t == Team.Vampires){
+			GetComponent<FogZone>().team = FogTeam.Vampires;
+		}
+		else if(t == Team.Hunters){
+			GetComponent<FogZone>().team = FogTeam.Hunters;
+		}
 	}
 	
 	public void GetCamera() {

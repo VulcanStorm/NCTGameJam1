@@ -67,7 +67,11 @@ public class WorldController : MonoBehaviour {
 		// refresh the fog map
 		for(int i=0;i<worldSizeX;i++){
 			for(int j=0;j<worldSizeY;j++){
+				// set the base fog
 				world[i,j].fog = world[i,j].baseFog;
+				// the fog modifiers for each team, set to zero, since we don't want to subtract anything yet
+				world[i,j].hunterFog = 0;
+				world[i,j].vampireFog = 0;
 			}
 		}
 		
@@ -81,6 +85,9 @@ public class WorldController : MonoBehaviour {
 			ProcessFogZone(fogZones[i]);
 		}
 		
+		// now combine the fog values
+		CombineFogValues();
+		
 	}
 	
 	void ProcessFogZone (FogZone zone) {
@@ -93,9 +100,37 @@ public class WorldController : MonoBehaviour {
 		
 		// iterate over all the tiles
 		for(int i=0;i<zone.fogTileZone.Length;i++){
+		
 			xPos = CheckBoundsX(zone.fogTileZone[i].x + baseXPos);
 			yPos = CheckBoundsY(zone.fogTileZone[i].y + baseYPos);
-			world[xPos,yPos].fog = BoundFog(world[xPos,yPos].fog - zone.fogTileZone[i].fogLevel);
+			
+			// check the fog teams
+			if(zone.team == FogTeam.Vampires){
+				world[xPos,yPos].vampireFog = BoundFog(world[xPos,yPos].vampireFog + zone.fogTileZone[i].fogLevel);
+			}
+			else if(zone.team == FogTeam.Hunters){
+				world[xPos,yPos].hunterFog = BoundFog(world[xPos,yPos].hunterFog + zone.fogTileZone[i].fogLevel);
+			}
+			else{
+				world[xPos,yPos].fog = BoundFog(world[xPos,yPos].fog - zone.fogTileZone[i].fogLevel);
+			}
+		}
+	}
+	
+	void CombineFogValues () {
+		// iterate over all the tiles
+		for(int i=0;i<worldSizeX;i++){
+			for(int j=0;j<worldSizeY;j++){
+				
+				// we now have values for the vampire specific fog, hunter specific fog, and background generic fog
+				
+				// so now calculate the hunter specific values
+				// subtract the hunter modifiers from the base fog modifiers
+				world[i,j].hunterFog = BoundFog(world[i,j].fog - world[i,j].hunterFog);
+				
+				world[i,j].vampireFog = BoundFog(world[i,j].fog - MapTile.baseVampireFogRedux - world[i,j].vampireFog);
+				
+			}
 		}
 	}
 	
@@ -157,6 +192,15 @@ public class WorldController : MonoBehaviour {
 				world[i,n] = world[i,0];
 			}
 		}
+		
+		for(int i=0;i<worldSizeX;i++){
+			for(int j=0;j<worldSizeY;j++){
+				if((j == 0 || j == (worldSizeY-1)) || (i==0 || i ==(worldSizeX-1))){
+					world[i,j].height = 10;
+				}
+			}
+		}
+		/*
 		world[5,5].height = 10;
 		world[5,4].height = 10;
 		world[5,3].height = 10;
@@ -165,7 +209,7 @@ public class WorldController : MonoBehaviour {
 		world[5,5].fog = 0;
 		world[5,4].fog = 0;
 		world[5,3].fog = 0;
-		world[5,2].fog = 0;
+		world[5,2].fog = 0;*/
 		
 		MapGenerator.singleton.CreateLoadedWorldMesh(true);
 	}

@@ -264,7 +264,7 @@ public class PlayerCtrlSetup : MonoBehaviour {
 	// called from spawner when spawning cameras
 	public void AddPlayerCamera(int index, GameObject go){
 		localPlayerCtrlData[index].cameraObject = go;
-		Team camTeam = (Team)((int)(index/2));
+		Team camTeam = (Team)(index%2);
 		go.GetComponent<CameraViewLayers>().SetLayerMaskToCameras(camTeam);
 	}
 	
