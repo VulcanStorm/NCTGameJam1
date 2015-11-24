@@ -8,7 +8,7 @@ public class item_return_vampire : MonoBehaviour {
 			player_carry plScript = other.GetComponent<player_carry>();
 			if(plScript.is_carrying == true && plScript.is_vampire == true){
 				score_manager.singleton.vampire_return ();
-				plScript.CaptureItem ();
+				plScript.ReturnItem ();
 			}
 		}
 	}
