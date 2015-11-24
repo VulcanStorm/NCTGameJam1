@@ -8,7 +8,7 @@ public class item_return_hunter : MonoBehaviour {
 			player_carry plScript = other.GetComponent<player_carry>();
 			if(plScript.is_carrying == true && plScript.is_hunter == true){
 				score_manager.singleton.hunter_return ();
-				plScript.CaptureItem ();
+				plScript.ReturnItem ();
 			}
 		}
 	}
