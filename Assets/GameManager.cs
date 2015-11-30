@@ -82,4 +82,8 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+	
+	public void GameOver () {
+		PlayerCtrlSetup.singleton.GameOver();
+	}
 }

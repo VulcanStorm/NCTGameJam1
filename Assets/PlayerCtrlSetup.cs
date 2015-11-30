@@ -184,16 +184,16 @@ public class PlayerCtrlSetup : MonoBehaviour {
 			GUI.Label(new Rect(vScreenWidth/4-50,100,200,30),"Press (Start)  To Begin");
 		}
 		if(activePlayers[1] == false){
-			GUI.Box(new Rect(75,vScreenHeight/2+25,vScreenWidth/2-100,vScreenHeight/2-100),"Connect Controller 2: Press (A) To Start");
+				GUI.Box(new Rect(vScreenWidth/2+25,75,vScreenWidth/2-100,vScreenHeight/2-100),"Connect Controller 2: Press (A) To Start");
 		}
 		else{
-			GUI.Box(new Rect(75,vScreenHeight/2+25,vScreenWidth/2-100,vScreenHeight/2-100),"Player 2 : Ready! Press (B) To Cancel");
+				GUI.Box(new Rect(vScreenWidth/2+25,75,vScreenWidth/2-100,vScreenHeight/2-100),"Player 2 : Ready! Press (B) To Cancel");
 		}
 		if(activePlayers[2] == false){
-			GUI.Box(new Rect(vScreenWidth/2+25,75,vScreenWidth/2-100,vScreenHeight/2-100),"Connect Controller 3: Press (A) To Start");
+				GUI.Box(new Rect(75,vScreenHeight/2+25,vScreenWidth/2-100,vScreenHeight/2-100),"Connect Controller 3: Press (A) To Start");
 		}
 		else{
-			GUI.Box(new Rect(vScreenWidth/2+25,75,vScreenWidth/2-100,vScreenHeight/2-100),"Player 3 : Ready! Press (B) To Cancel");
+				GUI.Box(new Rect(75,vScreenHeight/2+25,vScreenWidth/2-100,vScreenHeight/2-100),"Player 3 : Ready! Press (B) To Cancel");
 		}
 		if(activePlayers[3] == false){
 			GUI.Box(new Rect(vScreenWidth/2+25,vScreenHeight/2+25,vScreenWidth/2-100,vScreenHeight/2-100),"Connect Controller 4: Press (A) To Start");
@@ -268,4 +268,10 @@ public class PlayerCtrlSetup : MonoBehaviour {
 		go.GetComponent<CameraViewLayers>().SetLayerMaskToCameras(camTeam);
 	}
 	
+	
+	public void GameOver () {
+		for(int i=0;i<localPlayerCtrlData.Length;i++){
+			Destroy(localPlayerCtrlData[i].cameraObject);
+		}
+	}
 }
