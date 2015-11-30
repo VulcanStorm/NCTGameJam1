@@ -53,13 +53,22 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void SetTeam(Team t){
+		// set our player carry variables
+		player_carry plc = GetComponent<player_carry>();
+		
+		
 		playerTeam = t;
 		if(t == Team.Vampires){
 			GetComponent<FogZone>().team = FogTeam.Vampires;
+			plc.is_hunter = false;
+			plc.is_vampire = true;
 		}
 		else if(t == Team.Hunters){
 			GetComponent<FogZone>().team = FogTeam.Hunters;
+			plc.is_hunter = true;
+			plc.is_vampire = false;
 		}
+		
 	}
 	
 	public void GetCamera() {
